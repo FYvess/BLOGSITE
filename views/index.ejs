@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FranCoDev Blog</title>
+  <link rel="stylesheet" href="/styles/layout.css">
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <div class="browser-window">
+    <div class="browser-controls">
+      <div class="control"></div>
+      <div class="control"></div>
+      <div class="control"></div>
+    </div>
+    <div class="browser-content">
+      <% if (userName === "") { %>
+        <h1 class="greeting">Hi!</h1>
+        <p class="subtitle">Welcome to my blog website</p>
+        <button id="nameModalBtn" class="name-input-btn">Tell us your name</button>
+      <% } else { %>
+        <h1 class="greeting">Hi <%= userName %>!</h1>
+        <p class="subtitle">Welcome to my blog website</p>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="navigation-container">
+    <div class="navigation-grid">
+      <button class="nav-button" data-section="bio">BIO</button>
+      <button class="nav-button" data-section="hobbies">Hobbies</button>
+      <button class="nav-button" data-section="pets">PETS</button>
+      <button class="nav-button" data-section="portfolio">Portfolio</button>
+      <button class="nav-button" data-section="merchandise">Merchandise</button>
+      <button class="nav-button" data-section="contact">Contact Us</button>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
+  <!-- Background Music -->
+  <audio id="backgroundMusic" loop>
+    <source src="/audio/background-music.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Name Input Modal -->
+  <div id="nameModal" class="modal">
+    <div class="modal-content name-modal-content">
+      <div class="modal-header">
+        <h2>What's your name?</h2>
+        <span class="close-btn" id="closeNameModal">[x]</span>
+      </div>
+      <div class="modal-body">
+        <form action="/submit" method="POST" class="name-form">
+          <div class="form-group">
+            <label for="userNameInput">Your Name:</label>
+            <input type="text" id="userNameInput" name="userNameInput" required placeholder="Enter your name...">
+          </div>
+          <button type="submit" class="submit-btn">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title">Title</h2>
+        <span class="close-btn" id="closeModal">[x]</span>
+      </div>
+      <hr style="height:2px;border-width:0;background-color:var(--text-dark)">
+      <div class="modal-body" id="modal-body">
+        <!-- Content will be dynamically loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/music.js"></script>
+  <script src="/js/ripple.js"></script>
+  <script src="/js/modal.js"></script>
+</body>
+</html>
